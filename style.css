@@ -1,0 +1,260 @@
+/* importando afonte poppins do google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+/*criando a margem global */
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+:root{ /*esta variavel estara na raiz do arquivo*/
+  --color-white: #fff;
+  
+}
+/* definindo o scroll bahioo smooth que desta forma o scroll fica suave*/
+html {
+    scroll-behavior: smooth;
+    font-size: 10px;/*tamanho da fonta do html*/
+
+}
+body{
+    font-family: 'Poppins', sans-serif;/*definidndo a fonte do body*/
+}
+
+#person{/*seria a caixa principal como ela é id eu a referencio com #*/
+    height: 100vh; /*todo o conteudo ocupara 100%da pagina view hate vh*/
+    width: 100%;/*largura ocupando 100%*/
+
+    display: flex;/*torna o display mais flexivel*/
+    align-items: center;/*alinha as coias no eixo y*/
+    
+    background: black;
+}
+
+.person-content{/*conteiner dentro do conteiner maior(ou caixa maior)*/
+    height: 70%;/*altura*/
+    width: 50%;/*largura*/
+
+    display: flex;
+    justify-content: center;/*alinha as coisas horizontalmente*/
+    align-items: center;/*alinha verticalmente*/
+
+    flex-direction: column;/*forca o arquivo a ordenar as coias por colunas*/
+
+    background: var(--color-gray);
+}
+
+.person-content div h1{ /*refencio especificanmente onde quero muxer*/
+    background: var(--color-gray);
+    color: transparent;
+    
+    padding: 0px 4px; /*espacamento interno*/
+    position: relative;
+    width: fit-content; /*faz com que a animacao fique do tamanho somente do conteudo*/
+
+    font-size: 3.5rem;/*fator de multiplicacao 1rem = 10 px*/
+    line-height: 6rem;/*altura entre as linhas*/
+
+    animation: written_text.5s ease forwards;/*criando a anaimacao do nome, com a variavel animation */
+    /*1 vem a variavel depois o tempo de duracao e por fim o efeito da animacao o forwards diz apara ele permanecer no estado final da animacao*/
+}    
+.person-content div h1:nth-child(1){ /* utilizo para me refenciar a cada uma das tag h1*/
+    animation-delay: 1s;/*delimita um tempo pra animacao comecar*/
+}
+.person-content div h1:nth-child(2){
+    animation-delay: 2s;
+}
+.person-content div h1:nth-child(3){
+    animation: written_text_name .5s ease forwards;
+    animation-delay: 3s;
+    
+}
+
+.person-content div h1 span{/*como eu estou iterando sobre um span preciso aplicar o elemnto relative no pai dd span due seria o h1 */
+    position: absolute;/*altera a posicao de um componente(o absolute se refencia ao componente pai que tenha um position definido) */
+    top: 0;
+    left: 0;
+
+    width: 0px;
+    height: 50px;
+    background:greenyellow ;
+
+    animation:  written_text_box 1s ease;/* aqui eu referencio a anaimacao*/
+    animation-delay: .5s;
+}
+
+.person-content div h1:nth-child(1) span{
+  animation-delay: .5s;
+
+}
+
+.person-content div h1:nth-child(2) span{
+  animation-delay: 1.5s;
+
+}
+
+.person-content div h1:nth-child(3) span{
+  animation-delay: 2.5s;
+
+}
+.person-name{
+    margin-top: 11rem;
+}
+
+.stacks-content{
+    display: flex;
+    
+    justify-content: center;
+
+    flex-direction: column;
+    margin-top: 6rem;
+}
+
+.stacks-content h3{
+    color: var(--color-white);
+    font-size: 1.15rem;
+
+    margin-left: 20px;
+}
+.stacks {
+    display: flex;
+    align-items: center;
+
+    flex-direction: row;
+
+}
+
+.stacks ul li{
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    margin: 10px;
+    padding: 10px;
+
+    list-style: none;/* nao aparece interferencias do li*/
+}
+
+.stacks ul li img{
+    width: 30px;
+    height: auto;
+    transition: transform .3s ease;
+}
+
+.stacks ul li img:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+    
+}
+
+.stacks ul li div:hover::after{ /* ::after pseudo elemnto que da pra colocar propriedades*/
+    content:attr(data);
+    position:absolute;
+    top: 50px;
+    left: 10px;
+
+    width: 20px;
+    height: 20px;
+
+    color: var(--color-white);
+}
+
+.person-background{
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;
+    flex-direction: column;
+
+    background-image: url(./img/background.jpg);
+    background-size: cover;
+    background-position: top center;
+
+    z-index: 1;
+
+}
+
+.person-background::after{
+    content: "";
+    position: absolute;/*position absolutem tem que ter um relative no paidele*/
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    
+    /*opacity: .7;*/
+    z-index: -1;/* define a prioridade de cada elemento conforme maior o numer mais na frente ele vai ficar*/
+    background: /*mascara de efeito degrade/gradiente que fica por cima da imagem*/
+       linear-gradient(270deg, transparent 30%, black);
+   
+
+}
+
+.wrapper-profile-photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+
+    padding: 14px;
+    margin: 20px 15px;
+
+    background: 
+        radial-gradient(rgba(0,0,0,0.15) 60%, transparent 0),
+        radial-gradient(#000 68%, transparent 0),
+        linear-gradient(to top right, #ffa500 0%, #ff1493 100%);
+        border-radius: 50%;
+
+
+    
+}
+
+.profile-photo {
+    width: 100%;
+    border-radius: 50%;
+
+}
+
+.links a img{
+    width: 30px;
+    height: 30px;
+
+    margin: 10px;
+    filter: brightness(.8);
+    transition: all .3s ease;
+}
+
+.links a img:hover{
+    filter:brightness(1);
+    transform: scale(1.5);
+}
+@keyframes written_text {/*utilizado para fazer animacoes*/
+    100%{
+        color: var(--color-white);
+    }
+}
+
+@keyframes written_text_name {/*utilizado para fazer animacoes*/
+    100%{
+        color: blue;
+    }
+
+}
+
+@keyframes written_text_box {/*com ele eu defino a animacao o nome dela e as propriedades dela*/
+    50%{
+        width: 100%;
+        left: 0;
+    }
+    100%{
+        width: 0;
+        left:100%;
+    }
+
+}
